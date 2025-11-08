@@ -520,8 +520,6 @@
         .events-container {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            justify-content: center;
-            justify-content: center;
             gap: 1.875rem;
             max-width: 1000px;
             width: 100%;
@@ -1661,7 +1659,7 @@
                 as they begin their journey together
             </p>
             <div class="wedding-date">
-                29th - 30th November, 2025
+                30th November, 2025
             </div>
             <p class="venue-name">
                 <strong>Gold Finch Hotel</strong><br>
@@ -1674,8 +1672,6 @@
     <section class="events-section">
         <h2 class="section-title fade-in">Celebration Events</h2>
         <div class="events-container">
-            
-
             <!-- Varmala & Phera Card -->
             <div class="event-card slide-in-right arch-shaped">
                 <!-- Flower Shower Animation -->
@@ -1894,7 +1890,17 @@
                             }
                         }
 
-                        
+                        const sangeetCard = entry.target.closest('#sangeet-card');
+                        if (sangeetCard) {
+                            const fireworksContainer = sangeetCard.querySelector('.fireworks-container');
+                            if (entry.isIntersecting) {
+                                createFireworks(fireworksContainer);
+                            } else {
+                                if (fireworksContainer && fireworksContainer.fireworksInterval) {
+                                    clearInterval(fireworksContainer.fireworksInterval);
+                                    fireworksContainer.dataset.fireworksActive = false;
+                                }
+                            }
                         }
                     }
                 });
